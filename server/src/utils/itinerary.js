@@ -2,7 +2,6 @@
 const pool = require('../config/db');
 const httpError = require('./httpError');
 const { daysInclusive } = require('./dates');
-// Loads a trip that belongs to the user (404 otherwise) and adds trip.days.
 async function getOwnedTrip(userId, tripId) {
  const [rows] = await pool.query('SELECT * FROM trips WHERE id = ? AND user_id = ?', [tripId, userId]);
  if (!rows.length) throw httpError(404, 'Trip not found');
